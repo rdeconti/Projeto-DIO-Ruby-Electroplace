@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="offset-4 col-4 mt-5">
+    <div class="card">
+      <div class="card-body">
+        <%= form_with(model: @product, url: products_path, local: true) do |f| %>
+
+        <% if @product && @product.errors.any? %>
+          <ul>
+            <% @product.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+          <div class="form-group">
+            <%= f.label "Nome" %><br />
+            <%= f.text_field :name, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Preço" %><br />
+            <%= f.number_field :price, step: 0.01, min: 0, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Imagem" %><br />
+            <%= f.file_field(:image) %>
+          </div>
+
+          <div class="text-center"><button type="submit" class="btn btn-primary">Criar produto</button></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

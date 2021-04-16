@@ -1,0 +1,35 @@
+<div class="container">
+
+  <% if @cart.blank? || @cart.items.none? %>
+
+    <h2 class="mt-5">Ainda nao há itens no seu Carrinho</h2>
+
+  <% else %>
+    <h2 class="mt-5">Carrinho</h2>
+
+    <% @cart.items.each do |item| %>
+
+      <div class="card mt-3 mb-3">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-10">
+              <%= image_tag(item.product.image, style: "width: 150px; height: 150px; object-fit: contain;") %>
+            </div>
+            <div class="col-2">
+              <h4><%= item.product.name %></h4>
+              <h4>R$ <%= item.price %></h4>
+              <%= link_to "Remover Item", remove_item_from_cart_path(item_id: item.id), method: :delete, class: "btn btn-danger" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+    <div class="text-right mt-4">
+      <h4>Total: <span style="color: green;">R$ <%= @cart.total %></span></h4><br>
+      <%= link_to "Finalizar Pedido", finish_order_path(order_id: @cart.id), method: :put, class: "btn btn-info" %>
+    </div>
+
+    <% end %>
+</div>

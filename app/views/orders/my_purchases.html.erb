@@ -1,0 +1,28 @@
+<div class="container">
+  <h2 class="mt-5">Minhas Compras</h2>
+
+  <% @orders.each do |order| %>
+  <div class="card mt-3 mb-3">
+    <div class="card-header">
+      <h6>Total: R$ <%= order.total %></h6>
+      <h6>Finalizado em: <%= order.paid_at.strftime("%d/%m/%Y %H:%M") %></h6>
+    </div>
+    <div class="card-body">
+
+      <% order.items.each do |item| %>
+        <div class="row">
+          <div class="col-2">
+            <%= image_tag(item.product.image, style: "width: 75px; height: 75px; object-fit: contain;") %>
+          </div>
+          <div class="col-10">
+            <h6><%= item.product.name %></h6>
+            <h6>R$ <%= item.price %></h6>
+          </div>
+        </div>
+      <% end %>
+
+      </div>
+    </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row mt-5">
+    <% @products.each do |product| %>
+      <div class="d-flex col-4">
+        <div class="card mt-5" style="width: 18rem;">
+          <%= image_tag(product.image, style: "max-height: 200px; object-fit: contain;") %>
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">R$ <%= product.price %></li>
+          </ul>
+          <div class="card-body text-center">
+            <%= link_to "Adicionar ao carrinho", add_item_to_cart_path(product_id: product.id), method: :post, class: "btn btn-success" %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
